@@ -1,7 +1,7 @@
 # LoggersHell
 
 ## How to start:
- 1. First u need to publish in your local repository modules Tool and Payment.
+ 1. First u need to publish modules Tool and Payment in your local repository.
  2. Download LoggersHell and run: 
 ```
 gradle build
