@@ -8,34 +8,28 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 jar {
     manifest {
         attributes "Main-Class": "Main"
     }
+
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
-
 dependencies {
+    compile ('com.internal:Tools:1.0-SNAPSHOT'){
+        exclude group: 'log4j'
+    }
+    compile ('com.external:Payments:1.0-SNAPSHOT'){
+        exclude group: 'org.apache.logging.log4j'
+    }
     compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
-
-    compile group: 'org.elasticsearch.client', name: 'transport', version: '5.1.2'
     compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.7'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
-
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile group: 'com.internal_main', name: 'Tools', version: '1.0-SNAPSHOT'
-    compile group: 'com.external_main', name: 'Payments', version: '1.0-SNAPSHOT'
 }
