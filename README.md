@@ -6,7 +6,8 @@
 ```
 gradle build
 ```
- 3. Then simple run jar file:
+ 1. Go to project dir with cmd command.
+ 2. Then simple run jar file with arguments (ticketPrice, age, clientId, companyId) for example:
  ```
-java -jar LoggersHell\build\libs\Hell-1.0-SNAPSHOT.jar
+java -jar build\libs\Hell-1.0-SNAPSHOT.jar 15.5 12 1 1
 ```

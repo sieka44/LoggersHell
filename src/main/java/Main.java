@@ -9,18 +9,22 @@ public class Main {
     final static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-
-        logger.debug("First module is loading");
-
         DiscountCalculator discountCalculator = new DiscountCalculator();
-        discountCalculator.calculateDiscount(BigDecimal.valueOf(3000), 12);
-
-        logger.debug("first module loaded");
-        logger.error("second module is loading");
-
         PaymentsService paymentsService = new PaymentsService();
-        paymentsService.makePayment(123, 1, BigDecimal.valueOf(1000));
-
-        logger.debug("second module loaded");
+        logger.trace("Program start with:" + String.join(",", args));
+        BigDecimal ticketPrice;
+        int age;
+        int clientId;
+        int companyId;
+        if (args.length >= 4) {
+            ticketPrice = BigDecimal.valueOf(Double.parseDouble(args[0]));
+            age = Integer.parseInt(args[1]);
+            clientId = Integer.parseInt(args[2]);
+            companyId = Integer.parseInt(args[3]);
+            BigDecimal price = discountCalculator.calculateDiscount(ticketPrice, age);
+            paymentsService.makePayment(clientId, companyId, price);
+        } else {
+            logger.error("No specify arguments in input. Make sure it's ticketPrice/age/clientId/companyId");
+        }
     }
 }
