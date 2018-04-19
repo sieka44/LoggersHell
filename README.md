@@ -8,5 +8,5 @@ gradle build
 ```
  3. Then simple run jar file:
  ```
-java -jar C:\Users\Kamil\Desktop\LoggersHell\build\libs\Hell-1.0-SNAPSHOT.jar
+java -jar LoggersHell\build\libs\Hell-1.0-SNAPSHOT.jar
 ```
